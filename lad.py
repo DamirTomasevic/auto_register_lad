@@ -121,8 +121,6 @@ def fill_initial_form(driver, row):
             EC.presence_of_element_located((By.NAME, "emailaddress"))
         )
         
-
-        # Fill in the initial form fields
         phone_last_three = str(row['Telephone'])  # Get the last three digits of the telephone number
         user_id = f"{row['forename']}{row['surname']}{phone_last_three}"
         user_id = user_id.replace(" ", "")
@@ -400,14 +398,12 @@ def main():
     global user_password
     successful_count = 1
     location_index = 0
-    # Fetch proxies from the URL
     if 'result' not in data.columns:
         data['result'] = ''
     data['result'] = data['result'].astype(object)
     if 'password' not in data.columns:
         data['password'] = ''
     data['password'] = data['password'].astype(object)
-
     for index, row in data.iloc[0:].iterrows():
         # if(row['result'] == 'fail'):
             # location = random.choice(locations)
@@ -470,9 +466,9 @@ def main():
             time.sleep(3)
    
 
-            if successful_count % 20 == 0:
-                print("20 accounts registered successfully. Resting for 2 minutes...")
-                time.sleep(120)  # Sleep for 2 minutes
+            # if successful_count % 20 == 0:
+            #     print("20 accounts registered successfully. Resting for 2 minutes...")
+            #     time.sleep(120)  # Sleep for 2 minutes
             data.to_excel(file_path, index=False)
 if __name__ == "__main__":
     main()
